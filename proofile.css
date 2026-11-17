@@ -1,0 +1,688 @@
+:root {
+    --bg-page: #f0f4f8;
+    --bg-card: #ffffff;
+    --bg-subtle: #f8fafc;
+    --primary: #1b6b50;
+    --primary-hover: #134e3a;
+    --text-dark: #1e293b;
+    --text-gray: #64748b;
+    --border-color: #cbd5e1;
+    --border-soft: #e2e8f0;
+    
+    --radius-lg: 14px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.06);
+    --transition: 0.25s ease;
+}
+
+/* Автоматическое переключение в тёмную тему при активации #theme-toggle */
+.page-wrapper:has(#theme-toggle:checked) {
+    --bg-page: #0f172a;
+    --bg-card: #1e293b;
+    --bg-subtle: #0f172a;
+    --primary: #10b981;
+    --primary-hover: #059669;
+    --text-dark: #f1f5f9;
+    --text-gray: #94a3b8;
+    --border-color: #334155;
+    --border-soft: #334155;
+    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+.page-wrapper {
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ==========================================================================
+   2. ШАПКА САЙТА И МОБИЛЬНОЕ БУРГЕР-МЕНЮ
+   ========================================================================== */
+.header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-soft);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.burger-checkbox {
+    display: none;
+}
+
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-btn span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-dark);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.nav {
+    display: none;
+    width: 100%;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-soft);
+}
+
+.burger-checkbox:checked ~ .nav {
+    display: block;
+}
+
+.burger-checkbox:checked + .burger-btn span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(2) {
+    opacity: 0;
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav__link {
+    color: var(--text-dark);
+    font-weight: 500;
+    display: block;
+    padding: 6px 0;
+}
+
+.nav__link.active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.nav__btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.nav__btn--outline {
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+}
+
+.nav__btn--primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   3. СЕТКА ЛИЧНОГО КАБИНЕТА И КАРТОЧКИ
+   ========================================================================== */
+.profile-main {
+    flex: 1;
+    padding: 24px 0 48px;
+}
+
+.page-title {
+    font-size: 1.65rem;
+    margin-bottom: 20px;
+}
+
+.profile-layout {
+    display: flex;
+    flex-direction: column; /* На мобильных: 1 колонка */
+    gap: 20px;
+}
+
+.profile-sidebar,
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 22px 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-soft);
+}
+
+.card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card__title {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+}
+
+.card__header .card__title {
+    margin-bottom: 0;
+}
+
+.card__subtitle {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   4. ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ И НАСТРОЙКИ
+   ========================================================================== */
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.user-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.user-role {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.user-details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.92rem;
+}
+
+.user-details li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-soft);
+}
+
+.user-details li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.detail-label {
+    color: var(--text-gray);
+}
+
+.detail-value {
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Настройки и переключатель темы */
+.settings-list {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-soft);
+}
+
+.setting-item__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-item__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.setting-item__desc {
+    font-size: 0.82rem;
+    color: var(--text-gray);
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.theme-switch__checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-switch__slider {
+    position: absolute;
+    inset: 0;
+    background-color: #cbd5e1;
+    border-radius: 28px;
+    transition: var(--transition);
+}
+
+.theme-switch__slider::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__slider {
+    background-color: var(--primary);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__slider::before {
+    transform: translateX(22px);
+}
+
+/* ==========================================================================
+   5. МОИ ДОСТОПРИМЕЧАТЕЛЬНОСТИ И СТАТУСЫ МОДЕРАЦИИ
+   ========================================================================== */
+.badge-count {
+    font-size: 0.85rem;
+    font-weight: 600;
+    background-color: var(--bg-subtle);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+}
+
+.my-landmarks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.my-landmark-item {
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.my-landmark-item__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.my-landmark-item__title {
+    font-size: 1.02rem;
+}
+
+.my-landmark-item__date {
+    font-size: 0.84rem;
+    color: var(--text-gray);
+}
+
+.status-badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+.status-badge--approved {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-badge--pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge--rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* ==========================================================================
+   6. ФОРМА ДОБАВЛЕНИЯ ДОСТОПРИМЕЧАТЕЛЬНОСТИ И КНОПКИ
+   ========================================================================== */
+.landmark-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.req {
+    color: #dc2626;
+}
+
+.form-input {
+    width: 100%;
+    padding: 11px 13px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-subtle);
+    color: var(--text-dark);
+    transition: border-color var(--transition);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-file {
+    padding: 10px;
+    border: 1.5px dashed var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-subtle);
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.form-hint {
+font-size: 0.8rem;
+color: var(--text-gray);
+}
+.btn {
+display: inline-block;
+padding: 10px 18px;
+font-size: 0.92rem;
+font-weight: 600;
+border-radius: var(--radius-sm);
+text-align: center;
+cursor: pointer;
+border: none;
+transition: all var(--transition);
+}
+.btn--primary {
+background-color: var(--primary);
+color: #ffffff;
+}
+.btn--primary:hover {
+background-color: var(--primary-hover);
+color: #ffffff;
+}
+.btn--outline {
+border: 1.5px solid var(--primary);
+color: var(--primary);
+background: transparent;
+}
+.btn--outline:hover {
+background-color: var(--primary);
+color: #ffffff;
+}
+.btn--small {
+padding: 7px 14px;
+font-size: 0.85rem;
+background-color: var(--bg-card);
+border: 1px solid var(--border-color);
+color: var(--text-dark);
+}
+.btn--small:hover {
+border-color: var(--primary);
+color: var(--primary);
+}
+.btn--submit {
+padding: 13px 24px;
+font-size: 1rem;
+margin-top: 4px;
+}
+/* ==========================================================================
+7. МОДАЛЬНОЕ ОКНО СМЕНЫ ПАРОЛЯ (:target)
+========================================================================== */
+.css-modal {
+position: fixed;
+inset: 0;
+background-color: rgba(15, 23, 42, 0.65);
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 16px;
+opacity: 0;
+pointer-events: none;
+transition: opacity var(--transition);
+z-index: 200;
+}
+.css-modal:target {
+opacity: 1;
+pointer-events: auto;
+}
+.css-modal__content {
+background-color: var(--bg-card);
+color: var(--text-dark);
+border-radius: var(--radius-lg);
+padding: 28px 24px;
+width: 100%;
+max-width: 420px;
+position: relative;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+.css-modal__close {
+position: absolute;
+top: 12px;
+right: 16px;
+font-size: 1.7rem;
+line-height: 1;
+color: var(--text-gray);
+}
+.css-modal__title {
+font-size: 1.25rem;
+margin-bottom: 8px;
+}
+.css-modal__text {
+font-size: 0.9rem;
+color: var(--text-gray);
+margin-bottom: 18px;
+}
+/* ==========================================================================
+8. ПОДВАЛ САЙТА
+========================================================================== */
+.footer {
+background-color: #0f172a;
+color: #cbd5e1;
+padding: 36px 0;
+margin-top: auto;
+border-top: 1px solid var(--border-soft);
+}
+.footer__inner {
+display: flex;
+flex-direction: column;
+gap: 24px;
+}
+.footer__brand {
+font-size: 1.25rem;
+font-weight: 700;
+color: #ffffff;
+margin-bottom: 10px;
+}
+.footer__contacts p {
+font-size: 0.92rem;
+margin-bottom: 6px;
+}
+.footer__contacts a {
+color: #6ee7b7;
+}
+.footer__title {
+font-size: 1rem;
+color: #ffffff;
+margin-bottom: 12px;
+}
+.footer__list {
+list-style: none;
+display: grid;
+grid-template-columns: 1fr;
+gap: 8px;
+}
+.footer__list a {
+color: #94a3b8;
+font-size: 0.92rem;
+}
+.footer__list a:hover {
+color: #ffffff;
+}
+/* ==========================================================================
+9. АДАПТИВНОСТЬ (ДЕСКТОП ОТ 992px ДО 1920px)
+Структурные изменения при переходе от 360px к 1920px:
+1. Бургер-меню превращается в горизонтальную панель навигации.
+2. Кабинет перестраивается из 1 колонки в 2 колонки (360px сайдбар + основная колонка).
+3. Элементы списка «Мои достопримечательности» выстраиваются в строку с кнопкой справа.
+4. Парные поля формы (Категория/Район, Широта/Долгота) встают в 2 колонки.
+5. Подвал перестраивается в горизонтальный макет с 2 колонками ссылок.
+========================================================================== /
+@media (min-width: 992px) {
+/ 1. Горизонтальная навигация */
+.burger-btn {
+display: none;
+}
+.nav {
+display: block;
+width: auto;
+padding: 0;
+border-top: none;
+}
+.nav__list {
+flex-direction: row;
+align-items: center;
+gap: 24px;
+}
+/* 2. Двухколоночная структура личного кабинета */
+.profile-layout {
+display: grid;
+grid-template-columns: 360px 1fr;
+align-items: start;
+gap: 28px;
+}
+/* 3. Горизонтальная компоновка карточек в «Моих достопримечательностях» */
+.my-landmark-item {
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+/* 4. Двухколоночные строки внутри формы добавления */
+.form-row {
+flex-direction: row;
+gap: 20px;
+}
+/* 5. Горизонтальный футер */
+.footer__inner {
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+}
+.footer__list {
+grid-template-columns: repeat(2, minmax(220px, 1fr));
+gap: 8px 32px;
+}
+}

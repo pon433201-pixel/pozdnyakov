@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — Открой Оренбуржье</title>
+    <link rel="stylesheet" href="proofile.css">
+</head>
+<body>
+
+    <div id="profile-page" class="page-wrapper">
+
+        <!-- Шапка сайта -->
+        <header class="header">
+            <div class="container header__inner">
+                <a href="index.html" id="logo" class="logo">
+                    <span class="logo__icon">📍</span>
+                    <span class="logo__text">Открой Оренбуржье</span>
+                </a>
+
+                <!-- Бургер-меню на чистом CSS -->
+                <input type="checkbox" id="burger-toggle" class="burger-checkbox" aria-label="Открыть меню">
+                <label for="burger-toggle" class="burger-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+                <nav id="main-nav" class="nav">
+                    <ul class="nav__list">
+                        <li><a href="index.html#search-section" id="go-to-search" class="nav__link">Поиск достопримечательностей</a></li>
+                        <li><a href="catalog.html" id="nav-catalog" class="nav__link">Каталог достопримечательностей</a></li>
+                        <li><a href="profile.html" id="nav-profile" class="nav__link active">Личный кабинет</a></li>
+                        <li><a href="login.html" id="nav-login" class="nav__btn nav__btn--outline">Войти</a></li>
+                        <li><a href="register.html" id="nav-register" class="nav__btn nav__btn--primary">Регистрация</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="main profile-main">
+            <div class="container">
+                <h1 class="page-title">Личный кабинет</h1>
+
+                <div class="profile-layout">
+
+                    <!-- Левая колонка: Данные пользователя и Настройки -->
+                    <div class="profile-sidebar">
+
+                        <!-- 4.1. Информация о пользователе -->
+                        <section id="user-info" class="card">
+                            <div class="user-header">
+                                <div class="user-avatar" aria-hidden="true">АС</div>
+                                <div>
+                                    <h2 class="card__title">Алексей Смирнов</h2>
+                                    <span class="user-role">Краевед и автор</span>
+                                </div>
+                            </div>
+
+                            <ul class="user-details">
+                                <li>
+                                    <span class="detail-label">E-mail:</span>
+                                    <span class="detail-value">a.smirnov@orenmail.ru</span>
+                                </li>
+                                <li>
+                                    <span class="detail-label">Фамилия:</span>
+                                    <span class="detail-value">Смирнов</span>
+                                </li>
+                                <li>
+                                    <span class="detail-label">Имя:</span>
+                                    <span class="detail-value">Алексей</span>
+                                </li>
+                                <li>
+                                    <span class="detail-label">Дата рождения:</span>
+                                    <span class="detail-value">14.05.1995</span>
+                                </li>
+                                <li>
+                                    <span class="detail-label">Телефон:</span>
+                                    <span class="detail-value">+7 (903) 365-12-89</span>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- 4.4. Настройки профиля -->
+                        <section id="profile-settings" class="card">
+                            <h2 class="card__title">Настройки профиля</h2>
+
+                            <div class="settings-list">
+                                <!-- Переключатель темы на чистом CSS -->
+                                <div class="setting-item">
+                                    <div class="setting-item__info">
+                                        <span class="setting-item__name">Тёмная тема оформления</span>
+                                        <span class="setting-item__desc">Переключить интерфейс в ночной режим</span>
+                                    </div>
+                                    <label class="theme-switch" for="theme-toggle" title="Переключить тему">
+                                        <input type="checkbox" id="theme-toggle" class="theme-switch__checkbox">
+                                        <span class="theme-switch__slider"></span>
+                                    </label>
+                                </div>
+
+                                <!-- Кнопка смены пароля -->
+                                <div class="setting-item">
+                                    <div class="setting-item__info">
+                                        <span class="setting-item__name">Безопасность</span>
+                                        <span class="setting-item__desc">Регулярно обновляйте пароль аккаунта</span>
+                                    </div>
+                                    <a href="#password-modal" id="change-password-btn" class="btn btn--outline">Сменить пароль</a>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- Правая колонка: Мои достопримечательности и Форма добавления -->
+                    <div class="profile-content">
+
+                        <!-- 4.2. Мои достопримечательности -->
+                        <section id="my-landmarks" class="card">
+                            <div class="card__header">
+                                <h2 class="card__title">Мои достопримечательности</h2>
+                                <span class="badge-count">Всего: 3</span>
+                            </div>
+
+                            <div class="my-landmarks-list">
+                                <!-- Элемент 1: Одобрена -->
+                                <article class="my-landmark-item">
+                                    <div class="my-landmark-item__info">
+                                        <div class="my-landmark-item__top">
+                                            <h3 class="my-landmark-item__title">Национальный парк «Бузулукский бор»</h3>
+                                            <span class="status-badge status-badge--approved">Одобрена</span>
+                                        </div>
+                                        <p class="my-landmark-item__date">Дата добавления: 12.02.2026</p>
+                                    </div>
+                                    <a href="#add-landmark-form" class="btn btn--small">Редактировать</a>
+                                </article>
+
+                                <!-- Элемент 2: На проверке -->
+                                <article class="my-landmark-item">
+                                    <div class="my-landmark-item__info">
+                                        <div class="my-landmark-item__top">
+                                            <h3 class="my-landmark-item__title">Гора Верблюжка (Дюяташ)</h3>
+                                            <span class="status-badge status-badge--pending">На проверке</span>
+                                        </div>
+                                        <p class="my-landmark-item__date">Дата добавления: 18.03.2026</p>
+                                    </div>
+                                    <a href="#add-landmark-form" class="btn btn--small">Редактировать</a>
+                                </article>
+
+                                <!-- Элемент 3: Отклонена -->
+                                <article class="my-landmark-item">
+                                    <div class="my-landmark-item__info">
+                                        <div class="my-landmark-item__top">
+                                            <h3 class="my-landmark-item__title">Старая мельница на реке Урал</h3>
+                                            <span class="status-badge status-badge--rejected">Отклонена</span>
+                                        </div>
+                                        <p class="my-landmark-item__date">Дата добавления: 05.03.2026</p>
+                                    </div>
+                                    <a href="#add-landmark-form" class="btn btn--small">Редактировать</a>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- 4.3. Форма добавления достопримечательности -->
+                        <section class="card">
+                            <h2 class="card__title">Добавить достопримечательность</h2>
+                            <p class="card__subtitle">Заполните информацию об объекте, чтобы отправить его на проверку модератору</p>
+
+                            <form id="add-landmark-form" class="landmark-form" action="#my-landmarks" method="get">
+                                
+                                <!-- Название достопримечательности -->
+                                <div class="form-group">
+                                    <label for="landmark-title" class="form-label">Название достопримечательности <span class="req">*</span></label>
+                                    <input type="text" id="landmark-title" name="title" class="form-input" placeholder="Например: Заповедник «Шайтан-Тау»" required>

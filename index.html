@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Открой Оренбуржье — Главная</title>
+    <link rel="stylesheet" href="konkurs.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="index.html" id="logo" class="logo">Открой Оренбуржье</a>
+            
+            <!-- Бургер-меню на чистом CSS -->
+            <input type="checkbox" id="burger-toggle" class="burger-toggle">
+            <label for="burger-toggle" class="burger-btn" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav id="main-nav" class="nav">
+                <a href="search.html" id="go-to-search" class="nav__link">Поиск достопримечательностей</a>
+                <a href="katalog.html" id="nav-catalog" class="nav__link">Каталог достопримечательностей</a>
+                <a href="profile.html" id="nav-profile" class="nav__link">Личный кабинет</a>
+                <a href="loginn.html" id="nav-login" class="nav__btn">Войти</a>
+                <a href="reg.html" id="nav-register" class="nav__btn nav__btn--primary">Регистрация</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1.3 Быстрый поиск -->
+        <section id="search-section" class="search-section">
+            <div class="container">
+                <h1>Откройте для себя достопримечательности Оренбургской области</h1>
+                <form action="catalog.html" class="search-form">
+                    <input type="text" id="search-input" list="categories-list" placeholder="Введите название или категорию...">
+                    <datalist id="categories-list">
+                        <option value="Памятники архитектуры">
+                        <option value="Природные объекты">
+                        <option value="Музеи">
+                    </datalist>
+                    <button type="submit" id="search-button">Найти</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 1.4 Преимущества платформы -->
+        <section id="advantages-section" class="advantages-section">
+            <div class="container">
+                <h2>Преимущества платформы</h2>
+                <div class="advantages-grid">
+                    <div class="advantage-item">
+                        <span class="advantage-icon">📷</span>
+                        <p>Удобная загрузка фотографий</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">📍</span>
+                        <p>Точные координаты на карте</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">📝</span>
+                        <p>Подробные описания от местных жителей</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="advantage-icon">⭐</span>
+                        <p>Актуальная информация и отзывы путешественников</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1.5 Популярные достопримечательности (строго 5 карточек) -->
+        <section id="popular-section" class="popular-section">
+            <div class="container">
+                <h2>Популярные достопримечательности</h2>
+                <div class="cards-grid">
+                    <!-- Карточка 1 -->
+                    <article class="landmark-card">
+                        <img src="img/place1.jpg" alt="Бузулукский бор" class="landmark-card__img">
+                        <div class="landmark-card__body">
+                            <span class="landmark-card__cat">Природный объект</span>
+                            <h3>Бузулукский бор</h3>
+                            <p class="landmark-card__meta">Район: Бузулукский | Фото: 12</p>
+                            <p class="landmark-card__meta">Координаты: 52.8117, 52.2389</p>
+                            <p class="landmark-card__meta">Автор: Иван Петров</p>
+                            <div class="landmark-card__rating">★★★★★ (48)</div>
+                            <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                        </div>
+                    </article>
+                    <!-- Карточка 2 -->
+                    <article class="landmark-card">
+                        <img src="img/place2.jpg" alt="Караван-Сарай" class="landmark-card__img">
+                        <div class="landmark-card__body">
+                            <span class="landmark-card__cat">Памятник архитектуры</span>
+                            <h3>Караван-Сарай</h3>
+                            <p class="landmark-card__meta">Район: г. Оренбург | Фото: 8</p>
+                            <p class="landmark-card__meta">Координаты: 51.7764, 55.1022</p>
+                            <p class="landmark-card__meta">Автор: Анна Смирнова</p>
+                            <div class="landmark-card__rating">★★★★★ (64)</div>
+                            <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                        </div>
+                    </article>
+                    <!-- Карточка 3 -->
+                    <article class="landmark-card">
+                        <img src="img/place3.jpg" alt="Солёные озёра" class="landmark-card__img">
+                        <div class="landmark-card__body">
+                            <span class="landmark-card__cat">Природный объект</span>
+                            <h3>Солёные озёра Соль-Илецка</h3>
+                            <p class="landmark-card__meta">Район: Соль-Илецкий | Фото: 20</p>
+                            <p class="landmark-card__meta">Координаты: 51.1500, 54.9917</p>
+                            <p class="landmark-card__meta">Автор: Алексей Козлов</p>
+                            <div class="landmark-card__rating">★★★★☆ (112)</div>
+                            <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                        </div>
+                    </article>
+                    <!-- Карточка 4 -->
+                    <article class="landmark-card">
+                        <img src="img/place4.jpg" alt="Заповедник Оренбургский" class="landmark-card__img">
+                        <div class="landmark-card__body">
+                            <span class="landmark-card__cat">Природный объект</span>
+                            <h3>Заповедник «Оренбургский»</h3>
+                            <p class="landmark-card__meta">Район: Беляевский | Фото: 15</p>
+                            <p class="landmark-card__meta">Координаты: 51.2333, 56.0833</p>
+                            <p class="landmark-card__meta">Автор: Елена Морозова</p>
+                            <div class="landmark-card__rating">★★★★★ (39)</div>
+                            <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                        </div>
+                    </article>
+                    <!-- Карточка 5 -->
+                    <article class="landmark-card">
+                        <img src="img/place5.jpg" alt="Губернаторский музей" class="landmark-card__img">
+                        <div class="landmark-card__body">
+                            <span class="landmark-card__cat">Музей</span>
+                            <h3>Губернаторский историко-краеведческий музей</h3>
+                            <p class="landmark-card__meta">Район: г. Оренбург | Фото: 6</p>
+                            <p class="landmark-card__meta">Координаты: 51.7628, 55.1011</p>
+                            <p class="landmark-card__meta">Автор: Дмитрий Волков</p>
+                            <div class="landmark-card__rating">★★★★★ (27)</div>
+                            <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1.6 Слайдер на чистом CSS (не менее 4 слайдов) -->
+        <section id="slider-section" class="slider-section">
+            <div class="container">
+                <h2>Красоты Оренбуржья</h2>
+                <div class="css-slider">
+                    <input type="radio" name="slider" id="slide1" checked>
+                    <input type="radio" name="slider" id="slide2">
+                    <input type="radio" name="slider" id="slide3">
+                    <input type="radio" name="slider" id="slide4">
+
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="img/slide1.jpg" alt="Долгие горы">
+                            <div class="slide__caption">
+                                <h3>Долгие горы</h3>
+                                <p>Уникальный горный хребет с живописными видами на степные просторы Оренбуржья.</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="img/slide2.jpg" alt="Ириклинское водохранилище">
+                            <div class="slide__caption">
+                                <h3>Ириклинское водохранилище</h3>
+                                <p>Крупнейший искусственный водоём Южного Урала, называемый степным морем.</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="img/slide3.jpg" alt="Андреевские шишки">
+                            <div class="slide__caption">
+                                <h3>Андреевские шишки</h3>
+                                <p>Цепь из пяти живописных холмов в Саракташском районе с редкой флорой.</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            

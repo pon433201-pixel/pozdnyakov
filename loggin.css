@@ -1,0 +1,494 @@
+/* ==========================================================================
+   БАЗОВЫЕ НАСТРОЙКИ И ЦВЕТОВАЯ ПАЛИТРА
+   ========================================================================== */
+   :root {
+    --bg-page: #f0f4f8;
+    --bg-card: #ffffff;
+    --primary: #1b6b50;         /* Глубокий изумрудно-хвойный (Бузулукский бор) */
+    --primary-hover: #134e3a;
+    --accent-gold: #d97706;     /* Степной янтарный акцент */
+    --text-dark: #1e293b;
+    --text-gray: #64748b;
+    --border-light: #cbd5e1;
+    
+    --valid-color: #16a34a;
+    --invalid-color: #dc2626;
+    --warn-color: #d97706;
+    
+    --radius-lg: 14px;
+    --radius-sm: 8px;
+    --shadow-card: 0 12px 32px rgba(15, 23, 42, 0.08);
+    --transition: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ==========================================================================
+   ШАПКА САЙТА И БУРГЕР-МЕНЮ (ЧИСТЫЙ CSS БЕЗ JS)
+   ========================================================================== */
+.header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.burger-checkbox {
+    display: none;
+}
+
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-btn span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-dark);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.nav {
+    display: none;
+    width: 100%;
+    padding: 16px 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.burger-checkbox:checked ~ .nav {
+    display: block;
+}
+
+.burger-checkbox:checked + .burger-btn span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(2) {
+    opacity: 0;
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav__link {
+    color: var(--text-dark);
+    font-weight: 500;
+    display: block;
+    padding: 6px 0;
+}
+
+.nav__btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.nav__btn--outline {
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+}
+
+.nav__btn--outline:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.nav__btn--primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.nav__btn--primary:hover {
+    background-color: var(--primary-hover);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   ОСНОВНОЙ БЛОК ВХОДА (MOBILE-FIRST 360px)
+   ========================================================================== */
+.auth-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 28px 0 48px;
+}
+
+.auth-card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.auth-card__info {
+    background: linear-gradient(135deg, var(--primary) 0%, #0f4c3a 100%);
+    color: #ffffff;
+    padding: 28px 20px;
+}
+
+.auth-card__title {
+    font-size: 1.45rem;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.auth-card__subtitle {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+}
+
+.auth-card__perks {
+    display: none;
+    list-style: none;
+    margin-top: 24px;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #f8fafc;
+}
+
+.auth-card__form-wrapper {
+    padding: 28px 20px;
+}
+
+.form-heading {
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.form-subheading {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 24px;
+}
+
+.req {
+    color: var(--invalid-color);
+}
+
+/* ==========================================================================
+   ПОЛЯ ФОРМЫ И ВАЛИДАЦИЯ НА ЧИСТОМ CSS
+   ========================================================================== */
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.forgot-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    background-color: #f8fafc;
+    color: var(--text-dark);
+    transition: all var(--transition);
+}
+
+.form-input:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.15);
+}
+
+/* Сообщения валидации */
+.validation-messages {
+    min-height: 18px;
+    font-size: 0.82rem;
+}
+
+.msg {
+    display: none;
+}
+
+.form-input:not(:placeholder-shown):valid {
+    border-color: var(--valid-color);
+    background-color: #f0fdf4;
+}
+
+.form-input:not(:placeholder-shown):valid + .validation-messages .msg--valid {
+    display: block;
+    color: var(--valid-color);
+}
+
+.form-input:not(:placeholder-shown):invalid {
+    border-color: var(--invalid-color);
+    background-color: #fef2f2;
+}
+
+.form-input:not(:placeholder-shown):invalid + .validation-messages .msg--invalid {
+    display: block;
+    color: var(--invalid-color);
+}
+
+.form-input:required:placeholder-shown:user-invalid + .validation-messages .msg--empty {
+    display: block;
+    color: var(--warn-color);
+}
+
+.btn-submit {
+    margin-top: 6px;
+    padding: 13px 24px;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition), transform 0.1s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-submit:active {
+    transform: scale(0.99);
+}
+
+.auth-redirect {
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--text-gray);
+    margin-top: 4px;
+}
+
+.auth-redirect a {
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   МОДАЛЬНОЕ ОКНО «ЗАБЫЛИ ПАРОЛЬ?» НА ЧИСТОМ CSS (:target)
+   ========================================================================== */
+.css-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+    z-index: 200;
+}
+
+.css-modal:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.css-modal__content {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.css-modal__close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--text-gray);
+}
+
+.css-modal__close:hover {
+    color: var(--text-dark);
+}
+
+.css-modal__title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.css-modal__text {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 18px;
+}
+
+/* ==========================================================================
+   ПОДВАЛ САЙТА
+   ========================================================================== */
+.footer {
+    background-color: #0f172a;
+    color: #cbd5e1;
+    padding: 36px 0;
+    margin-top: auto;
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer__brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.footer__contacts p {
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+}
+
+.footer__contacts a {
+    color: #6ee7b7;
+}
+
+.footer__title {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.footer__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.footer__list a {
+    color: #94a3b8;
+    font-size: 0.92rem;
+}
+
+.footer__list a:hover {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ ДЕСКТОПА (ОТ 992px ДО 1920px)
+   ========================================================================== */
+@media (min-width: 992px) {
+    /* 1. Разворачиваем бургер-меню в горизонтальную панель */
+    .burger-btn {
+        display: none;
+    }
+
+    .nav {
+        display: block;
+        width: auto;
+        padding: 0;
+        border-top: none;
+    }
+
+    .nav__list {
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+    }
+
+    /* 2. Перестраиваем карточку входа в 2 колонки */
+    .auth-card {
+        display: grid;
+        grid-template-columns: 400px 1fr;

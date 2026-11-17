@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет — Открой Оренбуржье</title>
+    <link rel="stylesheet" href="loggin.css">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <a href="index.html" id="logo" class="logo">
+                <span class="logo__icon">📍</span>
+                <span class="logo__text">Открой Оренбуржье</span>
+            </a>
+
+            <!-- Бургер-меню на чистом CSS -->
+            <input type="checkbox" id="burger-toggle" class="burger-checkbox" aria-label="Открыть меню">
+            <label for="burger-toggle" class="burger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav id="main-nav" class="nav">
+                <ul class="nav__list">
+                    <li><a href="index.html#search-section" id="go-to-search" class="nav__link">Поиск достопримечательностей</a></li>
+                    <li><a href="catalog.html" id="nav-catalog" class="nav__link">Каталог достопримечательностей</a></li>
+                    <li><a href="profile.html" id="nav-profile" class="nav__link">Личный кабинет</a></li>
+                    <li><a href="login.html" id="nav-login" class="nav__btn nav__btn--primary active">Войти</a></li>
+                    <li><a href="register.html" id="nav-register" class="nav__btn nav__btn--outline">Регистрация</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main auth-main">
+        <div class="container">
+            <section class="auth-card auth-card--login">
+                <div class="auth-card__info">
+                    <h1 class="auth-card__title">С возвращением в «Открой Оренбуржье»!</h1>
+                    <p class="auth-card__subtitle">
+                        Войдите в свой аккаунт, чтобы добавлять новые достопримечательности, управлять своими публикациями и следить за статусом модерации.
+                    </p>
+                    <ul class="auth-card__perks">
+                        <li>✓ Быстрая загрузка фотографий и координат</li>
+                        <li>✓ Доступ к редактированию ваших мест</li>
+                        <li>✓ Настройка темы оформления профиля</li>
+                    </ul>
+                </div>
+
+                <div class="auth-card__form-wrapper">
+                    <h2 class="form-heading">Вход в личный кабинет</h2>
+                    <p class="form-subheading">Введите ваш E-mail и пароль для авторизации</p>
+
+                    <form id="login-form" class="reg-form" action="profile.html" method="get">
+                        
+                        <!-- Поле E-mail -->
+                        <div class="form-group">
+                            <label for="login-email" class="form-label">E-mail <span class="req">*</span></label>
+                            <input type="email" id="login-email" name="email" class="form-input" placeholder="example@mail.ru" required>
+                            <div class="validation-messages">
+                                <span class="msg msg--empty">Введите ваш E-mail</span>
+                                <span class="msg msg--invalid">Некорректный формат электронной почты</span>
+                                <span class="msg msg--valid">E-mail введён корректно</span>
+                            </div>
+                        </div>
+
+                        <!-- Поле Пароль -->
+                        <div class="form-group">
+                            <div class="label-row">
+                                <label for="login-password" class="form-label">Пароль <span class="req">*</span></label>
+                                <a href="#forgot-modal" id="forgot-password-link" class="forgot-link">Забыли пароль?</a>
+                            </div>
+                            <input type="password" id="login-password" name="password" class="form-input" placeholder="Введите пароль" minlength="6" required>
+                            <div class="validation-messages">
+                                <span class="msg msg--empty">Введите пароль</span>
+                                <span class="msg msg--invalid">Пароль должен содержать минимум 6 символов</span>
+                                <span class="msg msg--valid">Пароль соответствует формату</span>
+                            </div>
+                        </div>
+
+                        <!-- Кнопка «Войти» -->
+                        <button type="submit" id="login-submit" class="btn-submit">Войти</button>
+
+                        <p class="auth-redirect">
+                            Ещё нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Модальное окно восстановления пароля на чистом CSS (:target) -->
+    <div id="forgot-modal" class="css-modal">
+        <div class="css-modal__content">
+            <a href="#" class="css-modal__close" aria-label="Закрыть">&times;</a>
+            <h3 class="css-modal__title">Восстановление пароля</h3>
+            <p class="css-modal__text">Укажите E-mail, который вы использовали при регистрации. Мы отправим инструкцию для сброса пароля.</p>
+            <form action="#" class="reg-form">
+                <div class="form-group">
+                    <label for="reset-email" class="form-label">Ваш E-mail</label>
+                    <input type="email" id="reset-email" class="form-input" placeholder="example@mail.ru" required>
+                </div>
+                <button type="submit" class="btn-submit">Отправить ссылку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Подвал сайта -->
+    <footer id="footer" class="footer">
+        <div class="container footer__inner">
+            <div class="footer__contacts">
+                <div class="footer__brand">Открой Оренбуржье</div>
+                <p>Телефон: <a href="tel:88007654321">8-800-765-43-21</a></p>
+                <p>E-mail: <a href="mailto:info@orenlandmarks.ru">info@orenlandmarks.ru</a></p>
+            </div>
+
+            <div class="footer__nav">
+                <h3 class="footer__title">Навигация по сайту</h3>
+                <ul class="footer__list">
+                    <li><a href="index.html">главная</a></li>
+                    <li><a href="login.html">вход</a></li>
+                    <li><a href="register.html">регистрация</a></li>
+                    <li><a href="profile.html">личный кабинет</a></li>
+                    <li><a href="catalog.html">каталог достопримечательностей</a></li>
+                    <li><a href="landmark.html">страница достопримечательности</a></li>
+                    <li><a href="admin.html">административная панель</a></li>
+                    <li><a href="index_dark.html">главная - тёмная тема</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

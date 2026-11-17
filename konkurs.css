@@ -1,0 +1,296 @@
+
+/* Базовый сброс и переменные */
+:root {
+    --bg-color: #f8f9fa;
+    --surface-color: #ffffff;
+    --text-color: #212529;
+    --primary-color: #2b6cb0;
+    --border-color: #dee2e6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Шапка и CSS бургер-меню (Мобильная версия 360px) */
+.header {
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.burger-toggle {
+    display: none;
+}
+
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.burger-btn span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-color);
+    transition: 0.3s;
+}
+
+.nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 16px;
+}
+
+.burger-toggle:checked ~ .nav {
+    display: flex;
+}
+
+.nav__link, .nav__btn {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 8px 0;
+}
+
+.nav__btn--primary {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* Секции и сетки (Мобильная версия — 1 колонка) */
+section {
+    padding: 40px 0;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-form input, .search-form button {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.search-form button {
+    background: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+}
+
+.advantages-grid, .cards-grid, .partners-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.advantage-item, .landmark-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.advantage-item {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.landmark-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #e9ecef;
+}
+
+.landmark-card__body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.landmark-card__btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* CSS Слайдер */
+.css-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.css-slider input[type="radio"] {
+    display: none;
+}
+
+.slides {
+    display: flex;
+    width: 400%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: 25%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    background: #ced4da;
+}
+
+.slide__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    padding: 20px;
+}
+
+#slide1:checked ~ .slides { transform: translateX(0); }
+#slide2:checked ~ .slides { transform: translateX(-25%); }
+#slide3:checked ~ .slides { transform: translateX(-50%); }
+#slide4:checked ~ .slides { transform: translateX(-75%); }
+
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.slider-indicators label {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #adb5bd;
+    cursor: pointer;
+}
+
+#slide1:checked ~ .slider-indicators label[for="slide1"],
+#slide2:checked ~ .slider-indicators label[for="slide2"],
+#slide3:checked ~ .slider-indicators label[for="slide3"],
+#slide4:checked ~ .slider-indicators label[for="slide4"] {
+    background: var(--primary-color);
+}
+
+/* Подвал */
+.footer {
+    background: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    padding: 32px 0;
+}
+
+.footer__inner, .footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Десктопная адаптация (минимум 4 структурных изменения) */
+@media (min-width: 1024px) {
+    /* Изменение 1: Горизонтальное меню вместо бургера */
+    .burger-btn {
+        display: none;
+    }
+    .nav {
+        display: flex;
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 0;
+        gap: 20px;
+    }
+
+    /* Изменение 2: Поисковая строка в один ряд */
+    .search-form {
+        flex-direction: row;
+    }
+    .search-form input {
+        flex: 1;
+    }
+
+    /* Изменение 3: 4 колонки в преимуществах и 3 колонки в карточках */
+    .advantages-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Изменение 4: Двухколоночный подвал */
+    .footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .footer__nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 60%;
+    }
+}

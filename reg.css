@@ -1,0 +1,441 @@
+
+
+
+
+
+
+/* ==========================================================================
+   1. БАЗОВЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ (Светлая тема по умолчанию)
+   ========================================================================== */
+:root {
+    --bg-page: #f4f6f9;
+    --bg-surface: #ffffff;
+    --bg-accent-soft: #eef5f0;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --primary: #2e7d32;       /* Природный зелёный — цвет степей и лесов Оренбуржья */
+    --primary-hover: #1b5e20;
+    --border-color: #d1d5db;
+    
+    /* Цвета статусов валидации */
+    --color-valid: #16a34a;
+    --color-invalid: #dc2626;
+    --color-warning: #d97706;
+    
+    --radius: 10px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --transition: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+.container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ==========================================================================
+   2. ШАПКА САЙТА И МОБИЛЬНОЕ БУРГЕР-МЕНЮ (ЧИСТЫЙ CSS)
+   ========================================================================== */
+.header {
+    background-color: var(--bg-surface);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 68px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+.burger-checkbox {
+    display: none;
+}
+
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-btn span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* Мобильное меню по умолчанию скрыто */
+.nav {
+    display: none;
+    width: 100%;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.burger-checkbox:checked ~ .nav {
+    display: block;
+}
+
+/* Анимация бургера в крестик */
+.burger-checkbox:checked + .burger-btn span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(2) {
+    opacity: 0;
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav__link {
+    color: var(--text-main);
+    font-weight: 500;
+    display: block;
+    padding: 6px 0;
+}
+
+.nav__btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.nav__btn--outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.nav__btn--primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.nav__btn--primary:hover {
+    background-color: var(--primary-hover);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   3. КАРТОЧКА РЕГИСТРАЦИИ И СТРУКТУРА ФОРМЫ (MOBILE-FIRST: 360px)
+   ========================================================================== */
+.auth-main {
+    flex: 1;
+    padding: 24px 0 48px;
+    display: flex;
+    align-items: center;
+}
+
+.auth-card {
+    background-color: var(--bg-surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* На мобильных: 1 колонка */
+}
+
+.auth-card__info {
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 24px 20px;
+}
+
+.auth-card__title {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.auth-card__subtitle {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 16px;
+}
+
+/* На мобильных скрываем список преимуществ для компактности (структурное изменение) */
+.auth-card__perks {
+    display: none;
+    list-style: none;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
+.auth-card__form-wrapper {
+    padding: 24px 20px;
+}
+
+.form-heading {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.form-subheading {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.req {
+    color: var(--color-invalid);
+}
+
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column; /* На мобильных поля идут друг за другом */
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: var(--text-main);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+/* Чекбокс согласия */
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   4. CSS-ВАЛИДАЦИЯ ПОЛЕЙ (КОРРЕКТНОЕ / НЕКОРРЕКТНОЕ / НЕЗАПОЛНЕННОЕ)
+   ========================================================================== */
+.validation-messages {
+    min-height: 18px;
+    font-size: 0.8rem;
+}
+
+.msg {
+    display: none;
+}
+
+/* 1. Поле заполнено корректно (и не пустое) */
+.form-input:not(:placeholder-shown):valid {
+    border-color: var(--color-valid);
+    background-color: #f0fdf4;
+}
+
+.form-input:not(:placeholder-shown):valid + .validation-messages .msg--valid {
+    display: block;
+    color: var(--color-valid);
+}
+
+/* Для input[type="date"] (не поддерживает :placeholder-shown) */
+input[type="date"].form-input:valid {
+    border-color: var(--border-color);
+    background-color: #ffffff;
+}
+input[type="date"].form-input:focus:valid + .validation-messages .msg--valid {
+    display: block;
+    color: var(--color-valid);
+}
+
+/* 2. Поле заполнено некорректно (пользователь ввёл данные с ошибкой) */
+.form-input:not(:placeholder-shown):invalid {
+    border-color: var(--color-invalid);
+    background-color: #fef2f2;
+}
+
+.form-input:not(:placeholder-shown):invalid + .validation-messages .msg--invalid {
+    display: block;
+    color: var(--color-invalid);
+}
+
+/* 3. Обязательное поле не заполнено (после взаимодействия с полем или попытки отправки) */
+.form-input:required:placeholder-shown:user-invalid,
+.reg-form:has(:invalid) .form-input:required:placeholder-shown:focus {
+    border-color: var(--color-warning);
+}
+
+.form-input:required:placeholder-shown:user-invalid + .validation-messages .msg--empty {
+    display: block;
+    color: var(--color-warning);
+}
+
+/* Валидация чекбокса */
+.form-checkbox:checked ~ .validation-messages .msg--valid {
+    display: block;
+    color: var(--color-valid);
+}
+
+.form-checkbox:user-invalid:not(:checked) ~ .validation-messages .msg--empty {
+    display: block;
+    color: var(--color-warning);
+}
+
+/* Кнопка отправки */
+.btn-submit {
+    margin-top: 8px;
+    padding: 12px 24px;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color var(--transition), transform 0.1s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-submit:active {
+    transform: scale(0.99);
+}
+
+.auth-redirect {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   5. ПОДВАЛ САЙТА
+   ========================================================================== */
+.footer {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    padding: 32px 0;
+    margin-top: auto;
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer__brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.footer__contacts p {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.footer__contacts a {
+    color: #86efac;
+}
+
+.footer__title {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.footer__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr; /* 1 колонка ссылок на мобильных */
+    gap: 8px;
+}
+
+.footer__list a {
+    color: #d1d5db;
+    font-size: 0.9rem;
+}
+
+.footer__list a:hover {
+    color: #ffffff;
+}

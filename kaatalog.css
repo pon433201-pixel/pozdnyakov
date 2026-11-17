@@ -1,0 +1,453 @@
+:root {
+    --bg-page: #f0f4f8;
+    --bg-card: #ffffff;
+    --primary: #1b6b50;
+    --primary-hover: #134e3a;
+    --accent-star: #f59e0b;
+    --text-dark: #1e293b;
+    --text-gray: #64748b;
+    --border-light: #cbd5e1;
+    --radius-lg: 12px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.06);
+    --shadow-hover: 0 10px 25px rgba(15, 23, 42, 0.12);
+    --transition: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.container {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.print-only-title {
+    display: none;
+}
+
+/* ==========================================================================
+   2. ШАПКА САЙТА И БУРГЕР-МЕНЮ (ЧИСТЫЙ CSS)
+   ========================================================================== */
+.header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.burger-checkbox {
+    display: none;
+}
+
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-btn span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-dark);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.nav {
+    display: none;
+    width: 100%;
+    padding: 16px 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.burger-checkbox:checked ~ .nav {
+    display: block;
+}
+
+.burger-checkbox:checked + .burger-btn span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(2) {
+    opacity: 0;
+}
+.burger-checkbox:checked + .burger-btn span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav__link {
+    color: var(--text-dark);
+    font-weight: 500;
+    display: block;
+    padding: 6px 0;
+}
+
+.nav__link.active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.nav__btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.nav__btn--outline {
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+}
+
+.nav__btn--primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   3. ВЕРХНЯЯ ПАНЕЛЬ И ПОИСК ПО КАТАЛОГУ
+   ========================================================================== */
+.catalog-main {
+    flex: 1;
+    padding: 24px 0 48px;
+}
+
+.catalog-top {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.page-title {
+    font-size: 1.6rem;
+    color: var(--text-dark);
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: column; /* На мобильных поле и кнопка друг под другом */
+    gap: 10px;
+}
+
+.search-bar__input {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    background-color: #ffffff;
+}
+
+.search-bar__input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.15);
+}
+
+.search-bar__btn {
+    padding: 12px 24px;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.search-bar__btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   4. ФИЛЬТРАЦИЯ ПО КАТЕГОРИЯМ НА ЧИСТОМ CSS
+   ========================================================================== */
+.filter-radio {
+    display: none;
+}
+
+.catalog-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Мобильная кнопка раскрытия фильтра */
+.filter-toggle-checkbox {
+    display: none;
+}
+
+.mobile-filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-card);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-panel {
+    display: none; /* На мобильных скрыта до клика по иконке */
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    margin-top: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-toggle-checkbox:checked ~ .filter-panel {
+    display: block;
+}
+
+.filter-panel__title {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.filter-panel__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-option {
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.filter-option:hover {
+    background-color: #f1f5f9;
+}
+
+/* Подсветка выбранного пункта фильтра */
+#filter-all:checked ~ .catalog-layout .filter-option--all,
+#filter-arch:checked ~ .catalog-layout .filter-option--arch,
+#filter-nature:checked ~ .catalog-layout .filter-option--nature,
+#filter-museum:checked ~ .catalog-layout .filter-option--museum,
+#filter-history:checked ~ .catalog-layout .filter-option--history {
+    background-color: var(--primary);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Логика фильтрации карточек на чистом CSS */
+#filter-arch:checked ~ .catalog-layout .landmark-card:not([data-category="arch"]),
+#filter-nature:checked ~ .catalog-layout .landmark-card:not([data-category="nature"]),
+#filter-museum:checked ~ .catalog-layout .landmark-card:not([data-category="museum"]),
+#filter-history:checked ~ .catalog-layout .landmark-card:not([data-category="history"]) {
+    display: none;
+}
+
+/* ==========================================================================
+   5. СЕТКА И КАРТОЧКА ДОСТОПРИМЕЧАТЕЛЬНОСТИ (MOBILE: 1 КОЛОНКА)
+   ========================================================================== */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.landmark-card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.landmark-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.landmark-card__media {
+    position: relative;
+    height: 200px;
+    background-color: #e2e8f0;
+}
+
+.landmark-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.landmark-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(15, 23, 42, 0.82);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.landmark-card__photos {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.92);
+    color: var(--text-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.landmark-card__body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+}
+
+.landmark-card__title {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--text-dark);
+}
+
+.landmark-card__district,
+.landmark-card__coords {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.landmark-card__meta {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.85rem;
+}
+
+.landmark-card__author {
+    color: var(--text-gray);
+}
+
+.landmark-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stars {
+    color: var(--accent-star);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.reviews-count {
+    color: var(--text-gray);
+    font-weight: 600;
+}
+
+.landmark-card__btn {
+    margin-top: auto;
+    padding: 10px 16px;
+    background-color: #eef6f3;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.landmark-card__btn:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   6. ПОДВАЛ САЙТА
+   ========================================================================== */
+.footer {
+    background-color: #0f172a;
+    color: #cbd5e1;
+    padding: 36px 0;
+    margin-top: auto;
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer__brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;

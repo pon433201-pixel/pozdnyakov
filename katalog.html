@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог достопримечательностей — Открой Оренбуржье</title>
+    <link rel="stylesheet" href="kaatalog.css">
+</head>
+<body>
+
+    <div id="catalog-page" class="page-wrapper">
+
+        <!-- Шапка сайта -->
+        <header class="header">
+            <div class="container header__inner">
+                <a href="index.html" id="logo" class="logo">
+                    <span class="logo__icon">📍</span>
+                    <span class="logo__text">Открой Оренбуржье</span>
+                </a>
+
+                <input type="checkbox" id="burger-toggle" class="burger-checkbox" aria-label="Открыть меню">
+                <label for="burger-toggle" class="burger-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+                <nav id="main-nav" class="nav">
+                    <ul class="nav__list">
+                        <li><a href="index.html#search-section" id="go-to-search" class="nav__link">Поиск достопримечательностей</a></li>
+                        <li><a href="catalog.html" id="nav-catalog" class="nav__link active">Каталог достопримечательностей</a></li>
+                        <li><a href="profile.html" id="nav-profile" class="nav__link">Личный кабинет</a></li>
+                        <li><a href="login.html" id="nav-login" class="nav__btn nav__btn--outline">Войти</a></li>
+                        <li><a href="register.html" id="nav-register" class="nav__btn nav__btn--primary">Регистрация</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="main catalog-main">
+            <div class="container">
+
+                <!-- Заголовок, который появляется ТОЛЬКО при печати (Ctrl+P) -->
+                <h1 class="print-only-title">Достопримечательности Оренбургской области</h1>
+
+                <!-- Верхняя панель: заголовок и поиск -->
+                <div class="catalog-top">
+                    <h1 class="page-title">Каталог достопримечательностей</h1>
+
+                    <form class="search-bar" action="#catalog-grid" method="get">
+                        <input 
+                            type="text" 
+                            id="catalog-search" 
+                            class="search-bar__input" 
+                            list="search-hints" 
+                            placeholder="Например: Бузулукский бор, Соль-Илецк, Караван-Сарай"
+                        >
+                        <datalist id="search-hints">
+                            <option value="Бузулукский бор">
+                            <option value="Соль-Илецк">
+                            <option value="Караван-Сарай">
+                            <option value="Оренбургский заповедник">
+                            <option value="Музей В.С. Черномырдина">
+                        </datalist>
+                        <button type="submit" id="catalog-search-btn" class="search-bar__btn">Найти</button>
+                    </form>
+                </div>
+
+                <!-- Скрытые радиокнопки для фильтрации карточек на чистом CSS -->
+                <input type="radio" name="cat-filter" id="filter-all" class="filter-radio" checked>
+                <input type="radio" name="cat-filter" id="filter-arch" class="filter-radio">
+                <input type="radio" name="cat-filter" id="filter-nature" class="filter-radio">
+                <input type="radio" name="cat-filter" id="filter-museum" class="filter-radio">
+                <input type="radio" name="cat-filter" id="filter-history" class="filter-radio">
+
+                <!-- Рабочая область: панель фильтров + сетка карточек -->
+                <div class="catalog-layout">
+
+                    <!-- Боковая панель фильтрации (на мобильных сворачивается в выпадающее меню) -->
+                    <aside class="sidebar">
+                        <input type="checkbox" id="mobile-filter-toggle" class="filter-toggle-checkbox">
+                        <label for="mobile-filter-toggle" class="mobile-filter-btn">
+                            <span class="filter-icon">⚙️</span>
+                            <span>Фильтр по категориям</span>
+                            <span class="filter-arrow">▼</span>
+                        </label>
+
+                        <div id="filter-panel" class="filter-panel">
+                            <h2 class="filter-panel__title">Категории</h2>
+                            <div class="filter-panel__list">
+                                <label for="filter-all" class="filter-option filter-option--all">Все категории (6)</label>
+                                <label for="filter-arch" class="filter-option filter-option--arch">Памятники архитектуры</label>
+                                <label for="filter-nature" class="filter-option filter-option--nature">Природные объекты</label>
+                                <label for="filter-museum" class="filter-option filter-option--museum">Музеи</label>
+                                <label for="filter-history" class="filter-option filter-option--history">Исторические места</label>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Сетка карточек достопримечательностей -->
+                    <section id="catalog-grid" class="catalog-grid">
+
+                        <!-- Карточка 1 -->
+                        <article class="landmark-card" data-category="nature">
+                            <div class="landmark-card__media">
+                                <img src="https://placehold.co" alt="Национальный парк Бузулукский бор" class="landmark-card__img">
+                                <span class="landmark-card__badge">Природный объект</span>
+                                <span class="landmark-card__photos">📷 14 фото</span>
+                            </div>
+                            <div class="landmark-card__body">
+                                <h2 class="landmark-card__title">Национальный парк «Бузулукский бор»</h2>
+                                <p class="landmark-card__district">📍 Бузулукский район</p>
+                                <p class="landmark-card__coords">🧭 52.7854° с.ш., 52.2389° в.д.</p>
+                                <div class="landmark-card__meta">
+                                    <span class="landmark-card__author">Автор: Алексей Смирнов</span>
+                                    <span class="landmark-card__rating">
+                                        <span class="stars" aria-label="Рейтинг 5 из 5">★★★★★</span>
+                                        <span class="reviews-count">(128)</span>
+                                    </span>
+                                </div>
+                                <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Карточка 2 -->
+                        <article class="landmark-card" data-category="arch">
+                            <div class="landmark-card__media">
+                                <img src="https://placehold.co" alt="Архитектурный комплекс Караван-Сарай" class="landmark-card__img">
+                                <span class="landmark-card__badge">Памятник архитектуры</span>
+                                <span class="landmark-card__photos">📷 9 фото</span>
+                            </div>
+                            <div class="landmark-card__body">
+                                <h2 class="landmark-card__title">Комплекс «Караван-Сарай»</h2>
+                                <p class="landmark-card__district">📍 г. Оренбург</p>
+                                <p class="landmark-card__coords">🧭 51.7731° с.ш., 55.1025° в.д.</p>
+                                <div class="landmark-card__meta">
+                                    <span class="landmark-card__author">Автор: Елена Ковалёва</span>
+                                    <span class="landmark-card__rating">
+                                        <span class="stars" aria-label="Рейтинг 5 из 5">★★★★★</span>
+                                        <span class="reviews-count">(94)</span>
+                                    </span>
+                                </div>
+                                <a href="landmark.html" class="landmark-card__btn">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Карточка 3 -->
+                        <article class="landmark-card" data-category="nature">
+                            <div class="landmark-card__media">
+                                <img src="https://placehold.co" alt="Солёные озёра Соль-Илецка" class="landmark-card__img">
+                                <span class="landmark-card__badge">Природный объект</span>
+                                <span class="landmark-card__photos">📷 22 фото</span>
+                            </div>
+                            <div class="landmark-card__body">
+                                <h2 class="landmark-card__title">Солёные озёра Соль-Илецка</h2>
+                                <p class="landmark-card__district">📍 Соль-Илецкий городской округ</p>
+                                <p class="landmark-card__coords">🧭 51.1489° с.ш., 54.9912° в.д.</p>
+                                <div class="landmark-card__meta">
+                                    <span class="landmark-card__author">Автор: Дмитрий Орлов</span>
+                                    <span class="landmark-card__rating">

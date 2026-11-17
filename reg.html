@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — Открой Оренбуржье</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+
+    <!-- Шапка сайта (единая для всех страниц) -->
+    <header class="header">
+        <div class="container header__inner">
+            <a href="index.html" id="logo" class="logo">
+                <span class="logo__icon">📍</span>
+                <span class="logo__text">Открой Оренбуржье</span>
+            </a>
+
+            <!-- Бургер-меню на чистом CSS -->
+            <input type="checkbox" id="burger-toggle" class="burger-checkbox" aria-label="Открыть меню">
+            <label for="burger-toggle" class="burger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav id="main-nav" class="nav">
+                <ul class="nav__list">
+                    <li><a href="index.html#search-section" id="go-to-search" class="nav__link">Поиск достопримечательностей</a></li>
+                    <li><a href="catalog.html" id="nav-catalog" class="nav__link">Каталог достопримечательностей</a></li>
+                    <li><a href="profile.html" id="nav-profile" class="nav__link">Личный кабинет</a></li>
+                    <li><a href="login.html" id="nav-login" class="nav__btn nav__btn--outline">Войти</a></li>
+                    <li><a href="register.html" id="nav-register" class="nav__btn nav__btn--primary active">Регистрация</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main auth-main">
+        <div class="container">
+            <section class="auth-card">
+                <div class="auth-card__info">
+                    <h1 class="auth-card__title">Присоединяйтесь к исследователям Оренбуржья</h1>
+                    <p class="auth-card__subtitle">
+                        Делитесь уникальными местами родного края, загружайте фотографии, отмечайте координаты и помогайте туристам открывать новые маршруты.
+                    </p>
+                    <ul class="auth-card__perks">
+                        <li>✓ Добавление новых достопримечательностей</li>
+                        <li>✓ Ведение личной коллекции маршрутов</li>
+                        <li>✓ Оценка мест и публикация отзывов</li>
+                    </ul>
+                </div>
+
+                <div class="auth-card__form-wrapper">
+                    <h2 class="form-heading">Регистрация</h2>
+                    <p class="form-subheading">Поля, отмеченные <span class="req">*</span>, обязательны для заполнения</p>
+
+                    <form id="register-form" class="reg-form" action="profile.html" method="get">
+                        
+                        <!-- E-mail (обязательное) -->
+                        <div class="form-group">
+                            <label for="reg-email" class="form-label">E-mail <span class="req">*</span></label>
+                            <input type="email" id="reg-email" name="email" class="form-input" placeholder="example@mail.ru" required>
+                            <div class="validation-messages">
+                                <span class="msg msg--empty">Поле E-mail обязательно для заполнения</span>
+                                <span class="msg msg--invalid">Введите корректный адрес электронной почты (например, user@domain.ru)</span>
+                                <span class="msg msg--valid">E-mail заполнен корректно</span>
+                            </div>
+                        </div>
+
+                        <!-- Фамилия и Имя (группируются в 2 колонки на десктопе) -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reg-lastname" class="form-label">Фамилия <span class="req">*</span></label>
+                                <input type="text" id="reg-lastname" name="lastname" class="form-input" placeholder="Иванов" pattern="[А-Яа-яЁёA-Za-z\s\-]{2,}" required>
+                                <div class="validation-messages">
+                                    <span class="msg msg--empty">Укажите вашу фамилию</span>
+                                    <span class="msg msg--invalid">Минимум 2 буквы, без цифр и спецсимволов</span>
+                                    <span class="msg msg--valid">Фамилия указана корректно</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reg-firstname" class="form-label">Имя <span class="req">*</span></label>
+                                <input type="text" id="reg-firstname" name="firstname" class="form-input" placeholder="Иван" pattern="[А-Яа-яЁёA-Za-z\s\-]{2,}" required>
+                                <div class="validation-messages">
+                                    <span class="msg msg--empty">Укажите ваше имя</span>
+                                    <span class="msg msg--invalid">Минимум 2 буквы, без цифр и спецсимволов</span>
+                                    <span class="msg msg--valid">Имя указано корректно</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Дата рождения и Телефон (необязательные, в 2 колонки на десктопе) -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reg-birthdate" class="form-label">Дата рождения</label>
+                                <input type="date" id="reg-birthdate" name="birthdate" class="form-input" min="1920-01-01" max="2010-12-31">
+                                <div class="validation-messages">
+                                    <span class="msg msg--invalid">Выберите корректную дату (возраст от 16 лет)</span>
+                                    <span class="msg msg--valid">Дата рождения указана корректно</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reg-phone" class="form-label">Номер телефона</label>
+                                <input type="tel" id="reg-phone" name="phone" class="form-input" placeholder="+7 (900) 123-45-67" pattern="^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$">
+                                <div class="validation-messages">
+                                    <span class="msg msg--invalid">Формат: +7 (900) 123-45-67 или 89001234567</span>
+                                    <span class="msg msg--valid">Номер телефона заполнен корректно</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Пароль и Повтор пароля -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reg-password" class="form-label">Пароль <span class="req">*</span></label>
+                                <input type="password" id="reg-password" name="password" class="form-input" placeholder="Минимум 6 символов" minlength="6" required>
+                                <div class="validation-messages">
+                                    <span class="msg msg--empty">Придумайте пароль</span>
+                                    <span class="msg msg--invalid">Пароль должен содержать минимум 6 символов</span>
+                                    <span class="msg msg--valid">Надёжный пароль</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reg-password-confirm" class="form-label">Повтор пароля <span class="req">*</span></label>
+                                <input type="password" id="reg-password-confirm" name="password_confirm" class="form-input" placeholder="Повторите пароль" minlength="6" required>
+                                <div class="validation-messages">
+                                    <span class="msg msg--empty">Повторите введённый пароль</span>
+                                    <span class="msg msg--invalid">Длина пароля должна быть не менее 6 символов</span>
+                                    <span class="msg msg--valid">Поле заполнено корректно</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Чекбокс согласия (обязательный) -->
+                        <div class="form-group form-group--checkbox">
+                            <label class="checkbox-label" for="reg-consent">
+                                <input type="checkbox" id="reg-consent" name="consent" class="form-checkbox" required>
+                                <span>Согласен на обработку персональных данных <span class="req">*</span></span>
+                            </label>
+                            <div class="validation-messages">
+                                <span class="msg msg--empty">Необходимо дать согласие на обработку данных</span>
+                                <span class="msg msg--valid">Согласие подтверждено</span>
+                            </div>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <button type="submit" id="reg-submit" class="btn-submit">Зарегистрироваться</button>
+
+                        <p class="auth-redirect">
+                            Уже есть аккаунт? <a href="login.html">Войти</a>
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
